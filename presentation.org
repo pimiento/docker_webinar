@@ -77,7 +77,7 @@
     mkdir vagrant_project
     cd vagrant_project
     vagrant init generic/ubuntu2004
-    vagrant run
+    vagrant up
   #+END_SRC
 * Linux Namespaces
   __[[https://github.com/imankulov/trytry][TryTry]]__
