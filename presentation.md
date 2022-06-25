@@ -1,22 +1,22 @@
-- [chroot](#orgd86181d)
-- [chroot](#org8b76e6d)
-- [virtual machine](#org0cc7e89)
-- [vagrant](#org0410561)
-- [Linux Namespaces](#orgd00a909)
-- [Docker](#org607ed23)
-- [Слои](#org7fed6d6)
-- [Где всё на самом деле хранится?](#orga52996c)
-- [Как попасть на запущенный контейнер?](#orgb8d68a1)
-- [NAT (Network Adress Translation)](#orgccd6815)
-- [Собрать свой образ с нуля?](#org560714a)
-- [Запустить контейнер с графической системой?](#org0553a78)
-- [Запустить контейнер в контейнере?](#org86a3f24)
-- [Дополнительная литература](#orgc4bb8e8)
-- [Вопросы-ответы](#orgc8e78f6)
+- [chroot](#org93fd1fa)
+- [chroot](#org2b2c579)
+- [virtual machine](#org3bb35f0)
+- [vagrant](#org3107c28)
+- [Linux Namespaces](#org99f4536)
+- [Docker](#orga35fd59)
+- [Слои](#org49d45c9)
+- [Где всё на самом деле хранится?](#orga588b4b)
+- [Как попасть на запущенный контейнер?](#org8a05b8a)
+- [NAT (Network Adress Translation)](#org4d4fa23)
+- [Собрать свой образ с нуля?](#org7f530c8)
+- [Запустить контейнер с графической системой?](#orgfe488ec)
+- [Запустить контейнер в контейнере?](#orgad44dd4)
+- [Дополнительная литература](#orgbc37fef)
+- [Вопросы-ответы](#orgb349c64)
 
 
 
-<a id="orgd86181d"></a>
+<a id="org93fd1fa"></a>
 
 # chroot
 
@@ -37,7 +37,7 @@ echo -e "$(ldd /usr/bin/python3 | \
     /lib64/ld-linux-x86-64.so.2
 
 
-<a id="org8b76e6d"></a>
+<a id="org2b2c579"></a>
 
 # chroot
 
@@ -57,14 +57,14 @@ copy_to_chroot () {
 ```
 
 
-<a id="org0cc7e89"></a>
+<a id="org3bb35f0"></a>
 
 # virtual machine
 
 <vbox.sh>
 
 
-<a id="org0410561"></a>
+<a id="org3107c28"></a>
 
 # vagrant
 
@@ -76,30 +76,32 @@ vagrant up
 ```
 
 
-<a id="orgd00a909"></a>
+<a id="org99f4536"></a>
 
 # Linux Namespaces
 
 <span class="underline"><span class="underline">[TryTry](https://github.com/imankulov/trytry)</span></span>
 
 
-<a id="org607ed23"></a>
+<a id="orga35fd59"></a>
 
 # Docker
 
 ![img](docker.jpg)
 
 
-<a id="org7fed6d6"></a>
+<a id="org49d45c9"></a>
 
 # Слои
 
 ![img](layers.png)
 
 
-<a id="orga52996c"></a>
+<a id="orga588b4b"></a>
 
 # Где всё на самом деле хранится?
+
+<span class="underline"><span class="underline">[docker volumes](https://docs.docker.com/compose/compose-file/compose-file-v3/#volume-configuration-reference)</span></span>
 
     /var/lib/docker
 
@@ -114,7 +116,7 @@ docker system df
     - Build Cache     23        0         43.02kB   43.02kB
 
 
-<a id="orgb8d68a1"></a>
+<a id="org8a05b8a"></a>
 
 # Как попасть на запущенный контейнер?
 
@@ -125,29 +127,30 @@ docker exec -it <node> /bin/bash
 ```
 
 
-<a id="orgccd6815"></a>
+<a id="org4d4fa23"></a>
 
 # NAT (Network Adress Translation)
 
+<span class="underline"><span class="underline">[docker ports](https://docs.docker.com/compose/compose-file/compose-file-v3/#ports)</span></span>
 IPv4-адресов мало, а портов ещё меньше!
 ![img](nat.jpg)
 
 
-<a id="org560714a"></a>
+<a id="org7f530c8"></a>
 
 # Собрать свой образ с нуля?
 
 <span class="underline"><span class="underline">[baseimage](https://docs.docker.com/develop/develop-images/baseimages/)</span></span>
 
 
-<a id="org0553a78"></a>
+<a id="orgfe488ec"></a>
 
 # Запустить контейнер с графической системой?
 
 <span class="underline"><span class="underline">[Можно](https://www.cloudsavvyit.com/10520/how-to-run-gui-applications-in-a-docker-container/)</span></span>
 
 
-<a id="org86a3f24"></a>
+<a id="orgad44dd4"></a>
 
 # Запустить контейнер в контейнере?
 
@@ -156,7 +159,7 @@ IPv4-адресов мало, а портов ещё меньше!
 -   это может быть нужно когда у тебя CI система сама запускает сборку в контейнере, а в процессе сборки может создавать контейнер. тогда надо просто <span class="underline"><span class="underline">[пробрасывать docker daemon из хоста](https://itnext.io/docker-in-docker-521958d34efd?gi=a966915566a0)</span></span>
 
 
-<a id="orgc4bb8e8"></a>
+<a id="orgbc37fef"></a>
 
 # Дополнительная литература
 
@@ -166,7 +169,7 @@ IPv4-адресов мало, а портов ещё меньше!
 -   <span class="underline"><span class="underline">[Образы и контейнеры Docker в картинках](https://habr.com/ru/post/272145/)</span></span>
 
 
-<a id="orgc8e78f6"></a>
+<a id="orgb349c64"></a>
 
 # Вопросы-ответы
 

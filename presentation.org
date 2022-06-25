@@ -87,6 +87,7 @@
 * Слои
   [[file:layers.png]]
 * Где всё на самом деле хранится?
+  __[[https://docs.docker.com/compose/compose-file/compose-file-v3/#volume-configuration-reference][docker volumes]]__
   #+BEGIN_EXAMPLE
   /var/lib/docker
   #+END_EXAMPLE
@@ -107,6 +108,7 @@
     docker exec -it <node> /bin/bash
   #+END_SRC
 * NAT (Network Adress Translation)
+  __[[https://docs.docker.com/compose/compose-file/compose-file-v3/#ports][docker ports]]__
   IPv4-адресов мало, а портов ещё меньше!
   [[file:nat.jpg]]
 * Собрать свой образ с нуля?
