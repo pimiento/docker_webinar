@@ -7,5 +7,6 @@ copy_to_chroot () {
     mkdir -p $(dirname "chroot${i}")
     /bin/cp $i "chroot${i}";
   done
+  mkdir -p chroot/bin
   /bin/cp ${name} chroot/bin/
 }
