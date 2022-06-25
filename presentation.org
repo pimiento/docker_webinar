@@ -101,13 +101,14 @@
   : - Containers      0         0         0B        0B
   : - Local Volumes   0         0         0B        0B
   : - Build Cache     0         0         0B        0B
-
 * Как попасть на запущенный контейнер?
   Если вы не настроили доступ по SSH на контейнер, то всегда можно туда зайти таким способом
   #+BEGIN_SRC shell :exports code
     docker exec -it <node> /bin/bash
   #+END_SRC
-
+* NAT (Network Adress Translation)
+  IPv4-адресов мало, а портов ещё меньше!
+  [[file:nat.jpg]]
 * Собрать свой образ с нуля?
   __[[https://docs.docker.com/develop/develop-images/baseimages/][baseimage]]__
 

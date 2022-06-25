@@ -1,21 +1,22 @@
-- [chroot](#org61e57c1)
-- [chroot](#org347625b)
-- [virtual machine](#org099ddcf)
-- [vagrant](#orga3bae09)
-- [Linux Namespaces](#org77a03ca)
-- [Docker](#org101ee48)
-- [Слои](#org13ffe85)
-- [Где всё на самом деле хранится?](#org8080ae5)
-- [Как попасть на запущенный контейнер?](#org57147cf)
-- [Собрать свой образ с нуля?](#orgdf7888c)
-- [Запустить контейнер с графической системой?](#orgb442cf3)
-- [Запустить контейнер в контейнере?](#org5c27090)
-- [Дополнительная литература](#orgf599d5c)
-- [Вопросы-ответы](#org78e7c5a)
+- [chroot](#orgd86181d)
+- [chroot](#org8b76e6d)
+- [virtual machine](#org0cc7e89)
+- [vagrant](#org0410561)
+- [Linux Namespaces](#orgd00a909)
+- [Docker](#org607ed23)
+- [Слои](#org7fed6d6)
+- [Где всё на самом деле хранится?](#orga52996c)
+- [Как попасть на запущенный контейнер?](#orgb8d68a1)
+- [NAT (Network Adress Translation)](#orgccd6815)
+- [Собрать свой образ с нуля?](#org560714a)
+- [Запустить контейнер с графической системой?](#org0553a78)
+- [Запустить контейнер в контейнере?](#org86a3f24)
+- [Дополнительная литература](#orgc4bb8e8)
+- [Вопросы-ответы](#orgc8e78f6)
 
 
 
-<a id="org61e57c1"></a>
+<a id="orgd86181d"></a>
 
 # chroot
 
@@ -36,7 +37,7 @@ echo -e "$(ldd /usr/bin/python3 | \
     /lib64/ld-linux-x86-64.so.2
 
 
-<a id="org347625b"></a>
+<a id="org8b76e6d"></a>
 
 # chroot
 
@@ -56,14 +57,14 @@ copy_to_chroot () {
 ```
 
 
-<a id="org099ddcf"></a>
+<a id="org0cc7e89"></a>
 
 # virtual machine
 
 <vbox.sh>
 
 
-<a id="orga3bae09"></a>
+<a id="org0410561"></a>
 
 # vagrant
 
@@ -75,28 +76,28 @@ vagrant up
 ```
 
 
-<a id="org77a03ca"></a>
+<a id="orgd00a909"></a>
 
 # Linux Namespaces
 
 <span class="underline"><span class="underline">[TryTry](https://github.com/imankulov/trytry)</span></span>
 
 
-<a id="org101ee48"></a>
+<a id="org607ed23"></a>
 
 # Docker
 
 ![img](docker.jpg)
 
 
-<a id="org13ffe85"></a>
+<a id="org7fed6d6"></a>
 
 # Слои
 
 ![img](layers.png)
 
 
-<a id="org8080ae5"></a>
+<a id="orga52996c"></a>
 
 # Где всё на самом деле хранится?
 
@@ -113,7 +114,7 @@ docker system df
     - Build Cache     23        0         43.02kB   43.02kB
 
 
-<a id="org57147cf"></a>
+<a id="orgb8d68a1"></a>
 
 # Как попасть на запущенный контейнер?
 
@@ -124,21 +125,29 @@ docker exec -it <node> /bin/bash
 ```
 
 
-<a id="orgdf7888c"></a>
+<a id="orgccd6815"></a>
+
+# NAT (Network Adress Translation)
+
+IPv4-адресов мало, а портов ещё меньше!
+![img](nat.jpg)
+
+
+<a id="org560714a"></a>
 
 # Собрать свой образ с нуля?
 
 <span class="underline"><span class="underline">[baseimage](https://docs.docker.com/develop/develop-images/baseimages/)</span></span>
 
 
-<a id="orgb442cf3"></a>
+<a id="org0553a78"></a>
 
 # Запустить контейнер с графической системой?
 
 <span class="underline"><span class="underline">[Можно](https://www.cloudsavvyit.com/10520/how-to-run-gui-applications-in-a-docker-container/)</span></span>
 
 
-<a id="org5c27090"></a>
+<a id="org86a3f24"></a>
 
 # Запустить контейнер в контейнере?
 
@@ -147,7 +156,7 @@ docker exec -it <node> /bin/bash
 -   это может быть нужно когда у тебя CI система сама запускает сборку в контейнере, а в процессе сборки может создавать контейнер. тогда надо просто <span class="underline"><span class="underline">[пробрасывать docker daemon из хоста](https://itnext.io/docker-in-docker-521958d34efd?gi=a966915566a0)</span></span>
 
 
-<a id="orgf599d5c"></a>
+<a id="orgc4bb8e8"></a>
 
 # Дополнительная литература
 
@@ -157,7 +166,7 @@ docker exec -it <node> /bin/bash
 -   <span class="underline"><span class="underline">[Образы и контейнеры Docker в картинках](https://habr.com/ru/post/272145/)</span></span>
 
 
-<a id="org78e7c5a"></a>
+<a id="orgc8e78f6"></a>
 
 # Вопросы-ответы
 
