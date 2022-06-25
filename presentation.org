@@ -14,7 +14,7 @@
 #+LATEX_HEADER: \usepackage{booktabs}
 #+OPTIONS: \n:t ^:nil num:nil ltoc:nil buttons:nil
 * chroot
-  Добавим Django в chroot
+  Запустим Python в chroot
   #+BEGIN_SRC shell :exports both :results output vector
     echo -e "$(ldd /usr/bin/python3 | \
          egrep -o '/lib.*\.[0-9]')"
@@ -30,7 +30,7 @@
   : /lib/x86_64-linux-gnu/libz.so.1
   : /lib64/ld-linux-x86-64.so.2
 * chroot
-  #+BEGIN_SRC shell :exports code
+  #+BEGIN_SRC shell :exports code :tangle copy_to_chroot.sh
     copy_to_chroot () {
       local name="${1}"
       mkdir -p $(dirname "chroot${name}")
