@@ -101,10 +101,45 @@
 
   #+RESULTS:
   : - TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE
-  : - Images          0         0         0B        0B
+  : - Images          4         0         1.558GB   1.558GB (100%)
   : - Containers      0         0         0B        0B
-  : - Local Volumes   0         0         0B        0B
-  : - Build Cache     0         0         0B        0B
+  : - Local Volumes   3         0         45.46MB   45.46MB (100%)
+  : - Build Cache     28        0         2.499MB   2.499MB
+* полезные команды для работы с Docker
+  - очиста для пересборки "на чистую"
+    #+begin_src shell :exports code
+      docker system prune --all
+      docker volume prune
+    #+end_src
+  - посмотреть контейнеры
+    #+begin_src shell :exports code
+      # запущенные
+      docker container ls
+      # и остановленные в том числе
+      docker container ls -a
+    #+end_src
+  - *пересобрать* контейнеры
+    #+begin_src shell :exports code
+      docker compose up --build --no-deps <image name> -d
+    #+end_src
+* docker compose / docker-compose
+  __[[https://docs.docker.com/compose/install/linux/#install-the-plugin-manually][Официальная инструкция по установке плагина]]__
+  #+begin_src shell :exports both :results output
+    echo "--docker-compose--"
+    docker-compose version
+    echo "--docker compose--"
+    docker compose version
+  #+end_src
+
+  #+RESULTS:
+  : --docker-compose--
+  : docker-compose version 1.29.2, build 5becea4c
+  : docker-py version: 5.0.0
+  : CPython version: 3.7.10
+  : OpenSSL version: OpenSSL 1.1.0l  10 Sep 2019
+  : --docker compose--
+  : Docker Compose version v2.5.0
+
 * Как попасть на запущенный контейнер?
   Если вы не настроили доступ по SSH на контейнер, то всегда можно туда зайти таким способом
   #+BEGIN_SRC shell :exports code
@@ -114,6 +149,23 @@
   __[[https://docs.docker.com/compose/compose-file/compose-file-v3/#ports][docker ports]]__
   IPv4-адресов мало, а портов ещё меньше!
   [[file:nat.jpg]]
+* немного про NGINX
+  #+begin_src c :exports code
+    location / {
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP \
+          $remote_addr;
+      proxy_set_header X-Forwarded-For \
+          $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto \
+        $scheme;
+    /*
+     ,*  web это доменное имя известное
+     ,*  только внутри Docker-сети
+    ,*/
+      proxy_pass http://web:8080;
+    }
+  #+end_src
 * Собрать свой образ с нуля?
   __[[https://docs.docker.com/develop/develop-images/baseimages/][baseimage]]__
 
